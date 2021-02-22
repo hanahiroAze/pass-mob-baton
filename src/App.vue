@@ -3,12 +3,14 @@
     <h1>Pass Mob Baton</h1>
     <members @join-session="joinSession"/>
     <attendees @leave-session="leaveSession" :attendees="state.attendees"/>
+    <timer :interval="state.attendees.length * 10 * 1000"/>
   </div>
 </template>
 
 <script>
 import Members from './components/Members.vue';
 import Attendees from './components/Attendees.vue';
+import Timer from './components/Timer.vue';
 
 import { defineComponent, reactive } from "vue";
 
@@ -16,6 +18,7 @@ export default defineComponent({
   components: {
     Members,
     Attendees,
+    Timer,
   },
   setup() {
     const state = reactive({
