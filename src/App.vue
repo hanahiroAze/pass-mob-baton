@@ -1,17 +1,42 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div class='main'>
+    <h1>Pass Mob Baton</h1>
+    <members @join-session="joinSession"/>
+    <attendees @leave-session="leaveSession" :attendees="state.attendees"/>
+  </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Members from './components/Members.vue';
+import Attendees from './components/Attendees.vue';
 
-export default {
-  name: 'App',
+import { defineComponent, reactive } from "vue";
+
+export default defineComponent({
   components: {
-    HelloWorld
+    Members,
+    Attendees,
+  },
+  setup() {
+    const state = reactive({
+      attendees: [],
+    })
+
+    const joinSession = (attendee) => {
+      state.attendees.push(attendee)
+    }
+
+    const leaveSession = (attendee) => {
+      state.attendees.splice(attendee, 1)
+    }
+
+    return {
+      state,
+      joinSession,
+      leaveSession,
+    }
   }
-}
+})
 </script>
 
 <style>

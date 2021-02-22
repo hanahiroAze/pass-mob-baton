@@ -1,4 +1,4 @@
-# todo-app
+# Pass Mob Baton
 
 ## Project setup
 ```
