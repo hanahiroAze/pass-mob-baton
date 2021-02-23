@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import { ref, reactive, computed, defineComponent, watch } from 'vue';
+import { ref, computed, defineComponent } from 'vue';
 
 export default defineComponent({
   props: {
@@ -32,7 +32,7 @@ export default defineComponent({
   name: 'Timer',
 
   setup(props) {
-    const min = ref(props.interval)
+    let min = ref(props.interval)
     const sec = ref(0)
     const timerOn = ref(false)
     const timer = ref(null)
@@ -42,6 +42,9 @@ export default defineComponent({
     })
 
     function presentTime() {
+      if (!timerOn.value) {
+        min = ref(props.interval)
+      }
       let timeStrings = [
         min.value.toString(),
         sec.value.toString()
@@ -52,6 +55,7 @@ export default defineComponent({
           return str
         }
       })
+      
       return timeStrings[0] + ":" + timeStrings[1]
     }
 
@@ -86,7 +90,7 @@ export default defineComponent({
       timerOn,
       timer,
       timeLeft,
-      startStop,
+      startStop
     }
   }
 })
