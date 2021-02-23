@@ -4,7 +4,7 @@
       Attendees
     </label>
     <ul>
-      <li v-for="attendee in attendees">
+      <li v-for="attendee in attendees" key="attendee.name">
         {{attendee.name}}
         <button @click="leaveSession(attendee.name)">Leave</button>
         </li>
@@ -26,7 +26,7 @@ export default defineComponent({
 
   name: 'Attendees',
 
-  setup(props, context) {
+  setup(_, context) {
     
     function leaveSession(name) {
       context.emit('leave-session', name)

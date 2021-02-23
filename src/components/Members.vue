@@ -16,7 +16,6 @@
       </li>
     </ul>
     <button @click="resetAllMembers()">Reset Memvers</button>
-    <button @click="upperCaseMessage">To upper case</button>
   </div>
 </template>
 
@@ -26,7 +25,7 @@ import { ref, defineComponent } from 'vue';
 export default defineComponent({
   name: 'Members',
 
-  setup(props, context) {
+  setup(_, context) {
     const newMember = ref('');
     const members = ref([]);
 
